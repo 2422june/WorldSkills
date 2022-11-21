@@ -17,6 +17,13 @@ public class MapManager : MonoBehaviour
 
     private Define.MapInfo _firstInfo;
 
+    private GameManager _gameManager;
+
+    void Start()
+    {
+        _gameManager = GameObject.FindObjectOfType<GameManager>();
+    }
+
     public Define.MapInfo GetMapData()
     {
         return _firstInfo;
@@ -31,6 +38,7 @@ public class MapManager : MonoBehaviour
         while(objects.Count > 0)
         {
             Destroy(objects[0]);
+            objects.RemoveAt(0);
         }
         objects.Clear();
 
@@ -64,5 +72,7 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
+
+        _gameManager.OnMapSetting();
     }
 }

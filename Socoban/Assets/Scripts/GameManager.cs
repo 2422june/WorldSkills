@@ -6,8 +6,24 @@ public class GameManager : MonoBehaviour
 {
     private MapManager _mapManager;
 
+    private bool _isGameStart = false;
+
     private Transform _player;
-    private Vector3 _playerDir;
+    private Transform Player
+    {
+        get
+        {
+            if (_player == null)
+            {
+                _player = GameObject.FindGameObjectWithTag("Player").transform;
+            }
+            return _player;
+        }
+
+        set { _player = value; }
+    }
+
+private Vector3 _playerDir;
     private Ray _ray;
     private RaycastHit _hit;
     private Transform _pushingBox;
@@ -27,13 +43,21 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
+        _isGameStart = false;
+
         _clearPanel.SetActive(false);
 
         _mapManager = GetComponent<MapManager>();
 
         _mapManager.Init();
+    }
+
+    public void OnMapSetting()
+    {
         _clearScore = _mapManager.GetData();
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        _isGameStart = true;
     }
 
     void Moving()
@@ -59,6 +83,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (!_isGameStart)
+            return;
+
         if (_isMoving)
         {
             Moving();
@@ -75,7 +102,7 @@ public class GameManager : MonoBehaviour
         if (_playerDir == Vector3.zero)
             return;
 
-        _ray.origin = _player.position;
+        _ray.origin = Player.position;
         _ray.direction = _playerDir;
 
         if (Physics.Raycast(_ray, out _hit, 1f))
@@ -103,15 +130,15 @@ public class GameManager : MonoBehaviour
                 //-------
 
             }//box
-            else if (_hit.transform == _player || _hit.transform.CompareTag("Goal"))
+            else if (_hit.transform == Player || _hit.transform.CompareTag("Goal"))
             {
-                SetMove(_player, _playerDir);
+                SetMove(Player, _playerDir);
                 //_player.position += _playerDir;
             }
         }
         else
         {
-            SetMove(_player, _playerDir);
+            SetMove(Player, _playerDir);
             //_player.position += _playerDir;
         }
     }
