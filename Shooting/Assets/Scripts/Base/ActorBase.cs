@@ -12,6 +12,10 @@ public class ActorBase : MonoBehaviour
     [SerializeField]
     protected Slider _hpBar;
 
+    private Vector3 _max;
+    private Vector3 _min;
+    private Vector3 _nextPos;
+
 
     void Awake()
     {
@@ -20,12 +24,27 @@ public class ActorBase : MonoBehaviour
 
     protected virtual void Init()
     {
-
+        _max.x = 34;
+        _max.z = 31;
+        _min.x = -34;
+        _min.z = -1.75f;
     }
 
     protected virtual void Move()
     {
 
+    }
+
+    protected virtual bool IsOverMapXLine()
+    {
+        _nextPos.x = transform.position.x + _moveDir.x;
+        return (_nextPos.x >= _max.x) || (_nextPos.x <= _min.x);
+    }
+
+    protected virtual bool IsOverMapZLine()
+    {
+        _nextPos.z = transform.position.z + _moveDir.z;
+        return (_nextPos.z >= _max.z) || (_nextPos.z <= _min.z);
     }
 
     public virtual void GetDamage(int damage)

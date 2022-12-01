@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class RectChecker : MonoBehaviour
 {
-    private Vector2 _max;
-    private Vector2 _min;
+    private static Vector2 _max;
+    private static Vector2 _min;
 
-    private Vector4 _Max
+    private static Vector4 _Max
     {
         get
         {
@@ -20,7 +20,7 @@ public class RectChecker : MonoBehaviour
         }
     }
 
-    private Vector4 _Min
+    private static Vector4 _Min
     {
         get
         {
@@ -33,8 +33,34 @@ public class RectChecker : MonoBehaviour
         }
     }
 
-    public bool IsInMap(Vector3 pos)
+    public static bool IsInMap(Vector3 pos)
     {
-        return ( (pos.x < _Max.x) && (pos.x > _Min.x) && (pos.z < _Max.y) && (pos.z > _Min.y) );
+        return ((pos.x < _Max.x) && (pos.x > _Min.x) && (pos.z < _Max.y) && (pos.z > _Min.y));
+    }
+
+    public static float StopHorizontalValue(float pos)
+    {
+        if (pos >= _Max.x)
+        {
+            return pos - 1;
+        }
+        if (pos <= _Min.x)
+        {
+            return pos + 1;
+        }
+        return pos;
+    }
+
+    public static float StopVerticalValue(float pos)
+    {
+        if (pos >= _Max.y)
+        {
+            return pos - 1;
+        }
+        if (pos <= _Min.y)
+        {
+            return pos + 1;
+        }
+        return pos;
     }
 }
