@@ -48,7 +48,7 @@ public class BulletController : MonoBehaviour
         _ray.origin = transform.position;
         _ray.direction = Vector3.forward;
         
-        if(Physics.Raycast(_ray, out _hit, _moveSpeed, 1<<3))
+        if(Physics.Raycast(_ray, out _hit, _moveSpeed * Time.deltaTime, 1<<3))
         {
             transform.position = _hit.point;
             _hit.transform.GetComponent<ActorBase>().GetDamage(_damage);
