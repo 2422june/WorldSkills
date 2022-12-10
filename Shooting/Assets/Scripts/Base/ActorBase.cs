@@ -8,13 +8,17 @@ public class ActorBase : MonoBehaviour
     protected int _hp;
     protected int _damage;
     protected float _moveSpeed;
+    [SerializeField]
+    protected float _attackTime;
+    [SerializeField]
+    protected float _attackTimer;
     protected Vector3 _moveDir;
     [SerializeField]
     protected Slider _hpBar;
 
-    private Vector3 _max;
-    private Vector3 _min;
-    private Vector3 _nextPos;
+    protected Vector3 _max;
+    protected Vector3 _min;
+    protected Vector3 _nextPos;
 
 
     void Awake()
@@ -28,6 +32,9 @@ public class ActorBase : MonoBehaviour
         _max.z = 31;
         _min.x = -34;
         _min.z = -1.75f;
+
+        _attackTime = 0;
+        _attackTimer = 0;
     }
 
     protected virtual void Move()

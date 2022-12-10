@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : ActorBase
 {
@@ -23,20 +24,26 @@ public class PlayerController : ActorBase
         _moveSpeed = 50f;
         _moveDir = Vector3.zero;
         _trails = transform.Find("Trails").gameObject;
+        _attackTime = .5f;
         //_hpBar.value = _hp;
 
         for(_bulletIndex = 0; _bulletIndex < 30; _bulletIndex++)
         {
             _bullets.Add(Instantiate(_bullet.gameObject, _bullet.position, _bullet.rotation));
             _bullets[_bulletIndex].SetActive(false);
-            _bullets[_bulletIndex].GetComponent<BulletController>().Init(_damage);
+            _bullets[_bulletIndex].GetComponent<PlayerBulletController>().Init(_damage);
         }
         _bullet.gameObject.SetActive(false);
         _bulletIndex = 0;
+
+        _hpBar.maxValue = _hp;
+        _hpBar.value = _hp;
     }
 
     void Update()
     {
+        _attackTimer += Time.deltaTime;
+
         _moveDir.x = Input.GetAxisRaw("Horizontal");
         _moveDir.z = Input.GetAxisRaw("Vertical");
 
@@ -49,10 +56,10 @@ public class PlayerController : ActorBase
 
     protected override void Move()
     {
-        if (IsOverMapXLine())
+        /*if (IsOverMapXLine())
             _moveDir.x = 0;
         if (IsOverMapZLine())
-            _moveDir.z = 0;
+            _moveDir.z = 0;*/
 
         _trails.SetActive(_moveDir.z != -1);
 
@@ -72,7 +79,8 @@ public class PlayerController : ActorBase
     public override void GetDamage(int damage)
     {
         _hp -= damage;
-        if(_hp <= 0)
+        _hpBar.value = _hp;
+        if (_hp <= 0)
         {
             Die();
         }
@@ -80,17 +88,31 @@ public class PlayerController : ActorBase
 
     protected override void Attack()
     {
-        if (_bullets[_bulletIndex].activeSelf)
+        if(_attackTime <= _attackTimer)
         {
-            return;
-        }
-        _bullets[_bulletIndex].GetComponent<BulletController>().Shot(_bullet.position);
+            _attackTimer = 0;
+            if (_bullets[_bulletIndex].activeSelf)
+            {
+                return;
+            }
+            _bullets[_bulletIndex].GetComponent<PlayerBulletController>().Shot(_bullet.position);
 
-        _bulletIndex = (_bulletIndex+1)%30;
+            _bulletIndex = (_bulletIndex + 1) % 30;
+        }
     }
 
     protected override void Die()
     {
+        Destroy(gameObject);
+    }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            GetDamage(other.GetComponent<EnemyBase>().GetDamage());
+            ExplosionManager.Instance.CreateExplosion(transform.position);
+            Destroy(other.gameObject);
+        }
     }
 }
