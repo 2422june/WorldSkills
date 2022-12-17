@@ -12,32 +12,24 @@ public class PlayerController : ActorBase
     private int _bulletIndex;
 
     [SerializeField]
-    private Transform _bullet;
-    [SerializeField]
     private List<GameObject> _bullets;
 
     protected override void Init()
     {
         base.Init();
-        _hp = 100;
-        _damage = 30;
-        _moveSpeed = 50f;
-        _moveDir = Vector3.zero;
+        Init(50, 100, 30, 0.5f);
+        BulletSetting(Vector3.zero);
+
         _trails = transform.Find("Trails").gameObject;
-        _attackTime = .5f;
-        //_hpBar.value = _hp;
 
         for(_bulletIndex = 0; _bulletIndex < 30; _bulletIndex++)
         {
             _bullets.Add(Instantiate(_bullet.gameObject, _bullet.position, _bullet.rotation));
             _bullets[_bulletIndex].SetActive(false);
-            _bullets[_bulletIndex].GetComponent<PlayerBulletController>().Init(_damage);
+            _bullets[_bulletIndex].GetComponent<PlayerBulletController>().Init(_damage, _bulletDir, 95);
         }
         _bullet.gameObject.SetActive(false);
         _bulletIndex = 0;
-
-        _hpBar.maxValue = _hp;
-        _hpBar.value = _hp;
     }
 
     void Update()

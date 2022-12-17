@@ -5,19 +5,6 @@ using UnityEngine;
 
 public class EnemyBase : ActorBase
 {
-    /*protected int _hp;
-    protected int _damage;
-    protected float _moveSpeed;
-    protected Vector3 _moveDir;
-    [SerializeField]
-    protected Slider _hpBar;
-
-    private Vector3 _max;
-    private Vector3 _min;
-    private Vector3 _nextPos;*/
-    [SerializeField]
-    protected Transform _bullet;
-    protected Vector3 _bulletDir;
     protected Vector3 _originPos;
 
     protected override void Init()

@@ -9,7 +9,7 @@ public class CorsairController : EnemyBase
     {
         base.Init();
 
-        _moveSpeed = 10f;
+        Init(10, 60, 10, 1);
 
         _bullet = transform.Find("Bullet");
         _attackTime = 1f;
@@ -48,7 +48,7 @@ public class CorsairController : EnemyBase
     {
         _attackTimer = 0;
         Transform bullet = Instantiate(_bullet, _bullet.position, Quaternion.Euler(Vector3.down * 180));
-        bullet.GetComponent<EnemyBulletController>().Init(10, _bulletDir);
+        bullet.GetComponent<EnemyBulletController>().Init(_damage, _bulletDir);
         bullet.GetComponent<EnemyBulletController>().Shot(_bullet.position);
     }
 }

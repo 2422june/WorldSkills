@@ -20,6 +20,10 @@ public class ActorBase : MonoBehaviour
     protected Vector3 _min;
     protected Vector3 _nextPos;
 
+    [SerializeField]
+    protected Transform _bullet;
+    protected Vector3 _bulletDir;
+
 
     void Awake()
     {
@@ -35,6 +39,30 @@ public class ActorBase : MonoBehaviour
 
         _attackTime = 0;
         _attackTimer = 0;
+    }
+
+    protected void Init(float moveSpeed, int hp, int damage, float attackTime)
+    {
+        _moveSpeed = moveSpeed;
+
+        _hpBar = transform.Find("Canvas").Find("HPBar").GetComponent<Slider>();
+
+        _attackTime = attackTime;
+
+        _hp = hp;
+        _hpBar.maxValue = _hp;
+        _hpBar.value = _hp;
+
+        _damage = damage;
+
+        _moveDir = Vector3.zero;
+        _nextPos = Vector3.zero;
+    }
+
+    protected void BulletSetting(Vector3 bulletDir)
+    {
+        _bullet = transform.Find("Bullet");
+        _bulletDir = bulletDir;
     }
 
     protected virtual void Move()

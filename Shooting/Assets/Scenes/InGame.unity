@@ -21470,6 +21470,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Viking
       objectReference: {fileID: 0}
+    - target: {fileID: 4207963179048679612, guid: a1d860d3567d03d419074efda6f85454, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4847925560780310317, guid: a1d860d3567d03d419074efda6f85454, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -21478,6 +21482,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1366776573}
+    - target: {fileID: 4847925561640253260, guid: a1d860d3567d03d419074efda6f85454, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1d860d3567d03d419074efda6f85454, type: 3}
 --- !u!4 &4949523687679916738

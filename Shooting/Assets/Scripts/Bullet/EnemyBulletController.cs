@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class EnemyBulletController : BulletBase
 {
-    private Vector3 _bulletDir;
-
-    public void Init(int damage, Vector3 bulletDir)
-    {
-        Init(damage);
-        _bulletDir = bulletDir;
-    }
-
     void Update()
     {
         Fly();
