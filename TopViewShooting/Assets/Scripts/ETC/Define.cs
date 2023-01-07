@@ -6,6 +6,6 @@ public class Define
 {
     public enum Scenes
     {
-
+        Title = 0, Lobby, InGame
     }
 }
