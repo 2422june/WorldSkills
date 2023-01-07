@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Define
+public class ManagerBase : MonoBehaviour
 {
-    public enum Scenes
+    public virtual void Init()
     {
-        None = 0, Title = 1, Lobby, InGame
     }
 }
