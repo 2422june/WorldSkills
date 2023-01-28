@@ -10,7 +10,9 @@ public class TitleUI : SceneUIBase
 
     public override void OnShow()
     {
-        base.OnShow();
+        if (isAwaking)
+            return;
+
         _canvas = Managers.UIManager.SetCanvas("Title");
         startButton = Managers.UIManager.Find<Button>("Button");
         startButton.onClick.AddListener(OnClickStartButton);

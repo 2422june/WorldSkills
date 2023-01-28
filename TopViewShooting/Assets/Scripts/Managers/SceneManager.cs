@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using baseSceneManager = UnityEngine.SceneManagement;
-using sceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class SceneManager : ManagerBase
 {
+    [SerializeField]
     private List<GameObject> _scenes = new List<GameObject>();
     private int _nowScene;
 
@@ -24,6 +23,9 @@ public class SceneManager : ManagerBase
 
     public void LoadScene(Define.Scenes name)
     {
+        if (_nowScene == (int)name)
+            return;
+
         if(_scenes[(int)name] == null)
         {
             SetNewScene(name);

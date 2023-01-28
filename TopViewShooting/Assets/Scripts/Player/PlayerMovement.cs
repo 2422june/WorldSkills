@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        _moveSpeed = 10f;
+        _moveSpeed = 100f;
     }
 
     void Update()

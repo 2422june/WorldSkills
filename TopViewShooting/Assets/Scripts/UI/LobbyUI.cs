@@ -11,7 +11,8 @@ public class LobbyUI : SceneUIBase
 
     public override void OnShow()
     {
-        base.OnShow();
+        if (isAwaking)
+            return;
         _canvas = Managers.UIManager.SetCanvas("Lobby");
         startButton = Managers.UIManager.Find<Button>("Button");
         backButton = Managers.UIManager.Find<Button>("Back");

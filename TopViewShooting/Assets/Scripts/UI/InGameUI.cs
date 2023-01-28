@@ -10,11 +10,12 @@ public class InGameUI : SceneUIBase
 
     public override void OnShow()
     {
-        _mainCamera = GameObject.Find("MainCamera");
-        _inGameCamera = GameObject.Find("InGameCamera");
-        SwitchCamera();
-        base.OnShow();
-        _canvas = Managers.UIManager.SetCanvas("InGame");
+        if (isAwaking)
+            return;
+        //_mainCamera = GameObject.Find("MainCamera");
+        //_inGameCamera = GameObject.Find("InGameCamera");
+        //SwitchCamera();
+        //_canvas = Managers.UIManager.SetCanvas("InGame");
     }
 
     public void SwitchCamera()
