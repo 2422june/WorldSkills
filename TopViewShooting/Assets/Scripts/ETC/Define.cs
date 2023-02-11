@@ -8,4 +8,8 @@ public class Define
     {
         None = 0, Title = 1, Lobby, InGame
     }
+    public enum Items
+    {
+        Heart = 0, Gun = 1, Star
+    }
 }
