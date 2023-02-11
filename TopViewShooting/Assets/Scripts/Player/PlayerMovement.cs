@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float _h, _v, _moveSpeed;
-    private Vector3 _dir, _moveDir;
+    private float _h, _v, _moveSpeed, _rotValue;
+    private Vector3 _dir, _rot;
 
     void Start()
     {
-        _moveSpeed = 100f;
+        _moveSpeed = 12f;
+        _rotValue = -40;
     }
 
     void Update()
@@ -19,7 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
         _dir.x = _h;
         _dir.z = _v;
+        _dir = _dir.normalized;
 
-        transform.position += _dir.normalized * _moveSpeed * Time.deltaTime;
+        transform.position += _dir * _moveSpeed * Time.deltaTime;
+
+        _rot.z = _rotValue * _h;
+        transform.rotation = Quaternion.Euler(_rot);
     }
 }
