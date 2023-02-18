@@ -43,7 +43,7 @@ public class ObjectBase : MonoBehaviour
         return false;
     }
 
-    void Die()
+    protected virtual void Die()
     {
         Destroy(gameObject);
     }

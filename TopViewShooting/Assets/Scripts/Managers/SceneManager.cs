@@ -48,6 +48,11 @@ public class SceneManager : ManagerBase
     //public void OnLoadScene(baseSceneManager.Scene scene, baseSceneManager.LoadSceneMode mode)
     void OnLoadScene()
     {
+        if (_nowScene == (int)Define.Scenes.InGame)
+        {
+            Managers.GameManager.OnGame();
+        }
+
         _scenes[_nowScene].GetComponent<SceneUIBase>().OnShow();
     }
 }

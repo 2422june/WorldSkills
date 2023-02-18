@@ -5,24 +5,28 @@ using UnityEngine;
 public class ItemBase : MonoBehaviour
 {
     // HP, Speed, Score, Damage
-    private float _moveSpeed;
+    protected float _moveSpeed;
+    public int _value;
+    protected Define.Items _type;
 
-    public virtual void Init()
+    protected void Init()
     {
         _moveSpeed = 5;
+        _value = 0;
     }
 
-    void Update()
+    protected void Move()
     {
-        transform.position = Vector3.back * _moveSpeed;
+        transform.position += (Vector3.back * _moveSpeed) * Time.deltaTime;
         if (transform.position.z <= -6)
         {
             Destroy(gameObject);
         }
     }
 
-    public void Collect()
+    public virtual Define.Items Collect()
     {
         Destroy(gameObject);
+        return _type;
     }
 }

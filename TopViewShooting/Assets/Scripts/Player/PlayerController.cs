@@ -68,7 +68,7 @@ public class PlayerController : ObjectBase
     {
         if (other.CompareTag("Item"))
         {
-            other.GetComponent<ItemController>().Collect();
+            Collect(other.GetComponent<ItemBase>());
             ShowCollectEffect();
         }
     }
@@ -76,5 +76,57 @@ public class PlayerController : ObjectBase
     void ShowCollectEffect()
     {
         Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/CollectEffect"), transform.position, Quaternion.identity);
+    }
+
+    void Collect(ItemBase item)
+    {
+        int value = item._value;
+        Define.Items type = item.Collect();
+
+        switch(type)
+        {
+            case Define.Items.Heart:
+                Heal(value);
+                break;
+
+            case Define.Items.Gun:
+                DamageUp(value);
+                break;
+
+            case Define.Items.Star:
+                MoveSpeedUp(value);
+                break;
+
+            case Define.Items.Score:
+                GetScore(value);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    void Heal(int value)
+    {
+        _currentHp += value;
+        if (_currentHp > _maxHp)
+        {
+            _currentHp = _maxHp;
+        }
+    }
+
+    void DamageUp(int value)
+    {
+        _damage += value;
+    }
+
+    void MoveSpeedUp(int value)
+    {
+        _moveSpeed += value;
+    }
+
+    void GetScore(int value)
+    {
+        Managers.GameManager._score += value;
     }
 }

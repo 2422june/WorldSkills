@@ -10,6 +10,9 @@ public class GameManager : ManagerBase
     [Header("Test table")]
     public Define.Scenes startScene;
 
+    public int _score;
+    public float _time;
+
     public override void Init()
     {
         if (isTastPlay)
@@ -20,5 +23,11 @@ public class GameManager : ManagerBase
         {
             Managers.SceneManager.LoadScene(Define.Scenes.Title);
         }
+    }
+
+    public void OnGame()
+    {
+        _score = 0;
+        _time = 0;
     }
 }

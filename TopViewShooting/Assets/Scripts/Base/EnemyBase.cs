@@ -2,22 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : ObjectBase
+public class EnemyBase : ObjectBase
 {
-    void Start()
+    protected override void Init(int hp, int damage, float moveSpeed)
     {
-        _h = 0;
-        _v = -1;
-        _moveSpeed = 0;// 12f;
+        base.Init(hp, damage, moveSpeed);
     }
 
-    void Update()
+    protected void SetDir(Vector2 dir)
+    {
+        _h = dir.x;
+        _v = dir.y;
+    }
+
+    protected virtual void Move()
     {
         _dir.x = _h;
         _dir.z = _v;
         _dir = _dir.normalized;
 
         transform.position += _dir * _moveSpeed * Time.deltaTime;
+        
+        if (transform.position.z <= -8)
+        {
+            Destroy(gameObject);
+        }
     }
 
     protected override void Die()
@@ -32,12 +41,12 @@ public class EnemyController : ObjectBase
         int item = Random.Range(0, System.Enum.GetValues(typeof(Define.Items)).Length);
         string objName = "";
 
-        if(item >= System.Enum.GetValues(typeof(Define.Items)).Length)
+        if (item >= System.Enum.GetValues(typeof(Define.Items)).Length)
         {
             return;
         }
 
-        switch((Define.Items)item)
+        switch ((Define.Items)item)
         {
             case Define.Items.Heart:
                 objName = "HealthPlusRed";

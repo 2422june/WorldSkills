@@ -10,6 +10,10 @@ public class Define
     }
     public enum Items
     {
-        Heart = 0, Gun = 1, Star
+        Heart = 0, Gun = 1, Star, Score
+    }
+    public enum Enemys
+    {
+        Corsair = 0
     }
 }

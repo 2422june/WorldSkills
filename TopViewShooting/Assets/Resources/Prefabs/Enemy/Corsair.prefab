@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4783866479181585334}
   - component: {fileID: 8488281043081319443}
   - component: {fileID: 5920150945523278041}
-  - component: {fileID: 5920150945523278042}
   - component: {fileID: 5920150945523278043}
+  - component: {fileID: 3487032150266448320}
   m_Layer: 0
-  m_Name: Enemy1
+  m_Name: Corsair
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,18 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5920150945523278042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5271575080671117580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38b85ca78172f03458053e433143fe92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &5920150945523278043
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110,3 +98,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 34.47469, y: 4.8581448, z: 25.848888}
   m_Center: {x: 0, y: 2.4290724, z: 1.7589197}
+--- !u!114 &3487032150266448320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5271575080671117580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ab398e5a0b1a949b766af94192df34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
