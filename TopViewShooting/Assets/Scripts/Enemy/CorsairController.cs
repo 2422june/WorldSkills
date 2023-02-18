@@ -6,7 +6,7 @@ public class CorsairController : EnemyBase
 {
     void Start()
     {
-        Init(0, 1, 0);// 10);
+        Init(15, 1, 5);
         SetDir(Vector2.down);
     }
 

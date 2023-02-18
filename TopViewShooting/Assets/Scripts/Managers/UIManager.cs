@@ -14,11 +14,20 @@ public class UIManager : ManagerBase
     public Transform SetCanvas(string name)
     {
         _canvas = GameObject.Find(name).transform;
-        if(_canvas == null)
+        if (_canvas == null)
         {
             Debug.Log($"no {name} Object");
         }
         return _canvas;
+    }
+
+    public void SetCanvas(Transform canvas)
+    {
+        _canvas = canvas;
+        if (_canvas == null)
+        {
+            Debug.Log($"no {name} Object");
+        }
     }
 
     public T Find<T>(string objName)

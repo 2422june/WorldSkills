@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 225085495}
   - component: {fileID: 225085494}
   - component: {fileID: 225085496}
+  - component: {fileID: 225085497}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -184,63 +185,19 @@ MonoBehaviour:
   startScene: 0
   _score: 0
   _time: 0
---- !u!1001 &254408842
-PrefabInstance:
+  _isInGame: 0
+--- !u!114 &225085497
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4783866479181585334, guid: eb62ca2472a329b4389cb244be2df171, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4783866479181585334, guid: eb62ca2472a329b4389cb244be2df171, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4783866479181585334, guid: eb62ca2472a329b4389cb244be2df171, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4783866479181585334, guid: eb62ca2472a329b4389cb244be2df171, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.983
-      objectReference: {fileID: 0}
-    - target: {fileID: 4783866479181585334, guid: eb62ca2472a329b4389cb244be2df171, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4783866479181585334, guid: eb62ca2472a329b4389cb244be2df171, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4783866479181585334, guid: eb62ca2472a329b4389cb244be2df171, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4783866479181585334, guid: eb62ca2472a329b4389cb244be2df171, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4783866479181585334, guid: eb62ca2472a329b4389cb244be2df171, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4783866479181585334, guid: eb62ca2472a329b4389cb244be2df171, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 4783866479181585334, guid: eb62ca2472a329b4389cb244be2df171, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5271575080671117580, guid: eb62ca2472a329b4389cb244be2df171, type: 3}
-      propertyPath: m_Name
-      value: Corsair
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: eb62ca2472a329b4389cb244be2df171, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225085493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dcaecf2ee2e49d4692a0dde62c29b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &995120717
 GameObject:
   m_ObjectHideFlags: 0

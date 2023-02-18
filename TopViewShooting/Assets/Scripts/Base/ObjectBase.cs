@@ -7,6 +7,7 @@ public class ObjectBase : MonoBehaviour
     protected float _moveSpeed, _h, _v;
     protected int _currentHp, _maxHp, _damage;
     protected Vector3 _dir;
+    protected StatCanavs _canvas;
 
     protected virtual void Init(int hp, int damage, float moveSpeed)
     {
@@ -15,6 +16,9 @@ public class ObjectBase : MonoBehaviour
 
         _moveSpeed = moveSpeed;
         _damage = damage;
+
+        _canvas = GetComponentInChildren<StatCanavs>();
+        _canvas.Init(hp);
     }
 
     public int GetDamage()
@@ -25,6 +29,7 @@ public class ObjectBase : MonoBehaviour
     public void GetDamage(int damage)
     {
         _currentHp -= damage;
+        _canvas.SetHPBar(_currentHp);
 
         if(IsDie())
         {

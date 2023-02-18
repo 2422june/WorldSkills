@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : ObjectBase
@@ -71,6 +72,18 @@ public class PlayerController : ObjectBase
             Collect(other.GetComponent<ItemBase>());
             ShowCollectEffect();
         }
+        else if (other.CompareTag("Enemy"))
+        {
+            ShowExplosion();
+            GetDamage(other.GetComponent<ObjectBase>().GetDamage());
+
+            Destroy(other.gameObject);
+        }
+    }
+
+    void ShowExplosion()
+    {
+        Instantiate<GameObject>(Resources.Load<GameObject>("Prefabs/Explosion"), transform.position, Quaternion.identity);
     }
 
     void ShowCollectEffect()
@@ -113,6 +126,7 @@ public class PlayerController : ObjectBase
         {
             _currentHp = _maxHp;
         }
+        _canvas.SetHPBar(_currentHp);
     }
 
     void DamageUp(int value)
@@ -127,6 +141,6 @@ public class PlayerController : ObjectBase
 
     void GetScore(int value)
     {
-        Managers.GameManager._score += value;
+        Managers.GameManager.AddScore(value);
     }
 }
