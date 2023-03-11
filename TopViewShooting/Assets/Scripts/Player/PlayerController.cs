@@ -9,20 +9,30 @@ public class PlayerController : ObjectBase
 {
     private float _rotValue;
     private Vector3 _rot;
+    private bool isDie = false;
 
     protected override void Init(int hp, int damage, float moveSpeed)
     {
+        GetComponent<MeshRenderer>().enabled = true;
+
         base.Init(hp, damage, moveSpeed);
+
         _rotValue = -40;
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
+
+        isDie = false;
     }
 
-    void Start()
+    public void Play()
     {
-        Init(100, 10, 12f);
+        Init(3, 10, 12f);
     }
 
     void Update()
     {
+        if (isDie) { return; }
+
         SetDirection();
         Movement();
         Rotation();
@@ -49,6 +59,15 @@ public class PlayerController : ObjectBase
         _h = Input.GetAxisRaw("Horizontal");
         _v = Input.GetAxisRaw("Vertical");
 
+        if (transform.position.x * _h >= 7.5f)
+        {
+            _h = 0;
+        }
+        if (transform.position.z * _v >= 4)
+        {
+            _v = 0;
+        }
+
         _dir.x = _h;
         _dir.z = _v;
         _dir = _dir.normalized;
@@ -67,6 +86,8 @@ public class PlayerController : ObjectBase
 
     void OnTriggerEnter(Collider other)
     {
+        if (isDie) { return; }
+
         if (other.CompareTag("Item"))
         {
             Collect(other.GetComponent<ItemBase>());
@@ -79,6 +100,24 @@ public class PlayerController : ObjectBase
 
             Destroy(other.gameObject);
         }
+    }
+
+    protected override void Die()
+    {
+        if (isDie) { return; }
+
+        //Destroy(gameObject);
+        GetComponent<MeshRenderer>().enabled = false;
+        isDie = true;
+        Invoke("GoToResult", 2);
+    }
+
+    void GoToResult()
+    {
+        if (!Managers.GameManager._isInGame) { return; }
+
+        Managers.SceneManager.LoadScene(Define.Scenes.Result);
+        Managers.GameManager._isInGame = false;
     }
 
     void ShowExplosion()

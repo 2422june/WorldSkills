@@ -18,6 +18,9 @@ public class GameManager : ManagerBase
     public bool _isInGame;
     private InGameUI _inGameUI;
 
+    [Header("---Lobby table---")]
+    public int[] _bestScore = new int[5];
+
     public override void Init()
     {
         if (isTastPlay)
@@ -26,7 +29,29 @@ public class GameManager : ManagerBase
         }
         else
         {
+            LoadScore();
+
             Managers.SceneManager.LoadScene(Define.Scenes.Title);
+        }
+    }
+
+    public void SaveScore()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            PlayerPrefs.SetInt($"bestScore{i + 1}", _bestScore[i]);
+        }
+        PlayerPrefs.Save();
+    }
+
+    public void LoadScore()
+    {
+        if(PlayerPrefs.HasKey("bestScore1"))
+        {
+            for(int i = 0; i < 5; i++)
+            {
+                _bestScore[i] = PlayerPrefs.GetInt($"bestScore{i+1}");
+            }
         }
     }
 
@@ -53,5 +78,22 @@ public class GameManager : ManagerBase
     {
         _score += value;
         _inGameUI.SetScore(_score);
+    }
+
+    public void SetBestScore()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            if(_score >= _bestScore[i])
+            {
+                for(int j = 4; j > i; j--)
+                {
+                    _bestScore[j] = _bestScore[j-1];
+                }
+                _bestScore[i] = _score;
+                break;
+            }
+        }
+        SaveScore();
     }
 }

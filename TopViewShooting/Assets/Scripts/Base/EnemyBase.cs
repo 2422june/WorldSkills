@@ -32,6 +32,7 @@ public class EnemyBase : ObjectBase
     protected override void Die()
     {
         DropItem();
+        Managers.GameManager.AddScore(7);
 
         base.Die();
     }

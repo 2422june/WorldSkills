@@ -16,7 +16,6 @@ public class UIManager : ManagerBase
         _canvas = GameObject.Find(name).transform;
         if (_canvas == null)
         {
-            Debug.Log($"no {name} Object");
         }
         return _canvas;
     }
@@ -26,7 +25,6 @@ public class UIManager : ManagerBase
         _canvas = canvas;
         if (_canvas == null)
         {
-            Debug.Log($"no {name} Object");
         }
     }
 
@@ -34,7 +32,6 @@ public class UIManager : ManagerBase
     {
         if(_canvas == null)
         {
-            Debug.Log("you don't set canvas");
             return default(T);
         }
 
@@ -42,7 +39,6 @@ public class UIManager : ManagerBase
         T btn = obj.GetComponent<T>();
         if(btn == null)
         {
-            Debug.Log($"No element in {objName}");
         }
         return btn;
     }

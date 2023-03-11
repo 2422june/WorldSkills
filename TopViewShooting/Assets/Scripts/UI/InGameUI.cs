@@ -19,12 +19,23 @@ public class InGameUI : SceneUIBase
         Managers.UIManager.SetCanvas(_canvas);
         _timeT = _canvas.Find("TimeBox").GetComponentInChildren<Text>();
         _scoreT = _canvas.Find("ScoreBox").GetComponentInChildren<Text>();
+        Clear();
 
         if (isAwaking)
         {
-
             return;
         }
+    }
+
+    void Clear()
+    {
+        _score = 0;
+        _time = 0;
+
+        _scoreT.text = "000000000000000";
+        _timeT.text = "00 : 00";
+
+        transform.Find("Player").GetComponent<PlayerController>().Play();
     }
 
     public void SetScore(int score)
