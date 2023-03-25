@@ -39,6 +39,10 @@ public class ObjectBase : MonoBehaviour
     protected virtual void Die()
     {
         _isDie = true;
-        gameObject.SetActive(false);
+        Destroy(gameObject);
+    }
+
+    public virtual void Clear()
+    {
     }
 }

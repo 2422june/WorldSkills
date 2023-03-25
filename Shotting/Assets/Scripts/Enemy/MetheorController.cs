@@ -12,7 +12,7 @@ public class MetheorController : EnemyBase
     public override void Init(int hp, int damage)
     {
         base.Init(hp, damage);
-        _moveSpeed = 80f;
+        _moveSpeed = 120f;
         _dir = Vector3.back;
     }
 

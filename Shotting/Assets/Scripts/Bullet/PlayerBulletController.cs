@@ -2,39 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBulletController : ObjectBase
+public class PlayerBulletController : PlayerBase
 {
-    void Start()
-    {
-        Init(1, 5);
-    }
+    public bool _isShotting;
+    private Transform _shotPos;
 
-    public override void Init(int hp, int damage)
+    public void Init(Transform shotPos)
     {
-        base.Init(hp, damage);
+        _shotPos = shotPos;
         _moveSpeed = 80f;
         _dir = Vector3.forward;
+        _isShotting = false;
+        gameObject.SetActive(false);
+    }
+
+    public void shot(int damage)
+    {
+        Init(0, damage);
+        transform.position = _shotPos.position;
+        _isShotting = true;
+        gameObject.SetActive(true);
     }
 
     void Update()
     {
-        Move();
+        if (_isShotting)
+            Move();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("Enemy"))
-        {
-            //GetDamage(other.transform.);
-        }
-        if (other.transform.CompareTag("EnemyBullet"))
-        {
-            //GetDamage(other.transform.);
-        }
-        if (other.transform.CompareTag("Metheor"))
-        {
-            GetDamage(other.transform.GetComponent<EnemyBase>().GetDamage());
-            other.transform.GetComponent<EnemyBase>().GetDamage(_damage);
-        }
+        GetDamage(other);
+    }
+
+    public override void Clear()
+    {
+        gameObject.SetActive(false);
+        transform.position = _shotPos.position;
+        _isShotting = false;
     }
 }

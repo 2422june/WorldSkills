@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBase : ObjectBase
+public class Enemy2Controller : EnemyBase
 {
+    void Start()
+    {
+        Init(1, 5);
+    }
 
     public override void Init(int hp, int damage)
     {
@@ -12,9 +16,8 @@ public class EnemyBase : ObjectBase
         _dir = Vector3.back;
     }
 
-    protected void Attack()
+    void Update()
     {
-
+        Move();
     }
-
 }
