@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5024995328894963416}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.094, y: 0, z: -1.484}
+  m_LocalPosition: {x: 0, y: -0.405, z: -0.017}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -149,8 +149,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5024995329308183353}
-  - component: {fileID: 5024995329308183352}
   - component: {fileID: 2840515118146236637}
+  - component: {fileID: 6959189421346257904}
   m_Layer: 0
   m_Name: NormalBullet
   m_TagString: Untagged
@@ -174,19 +174,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5024995329308183352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5024995329308183354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f59a59e8bec5b1b4fad89b848f0075c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive: 0
 --- !u!65 &2840515118146236637
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -200,6 +187,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6959189421346257904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024995329308183354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6891b034c2fe08c4aba600906bc917ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
 --- !u!1 &6425166377221614703
 GameObject:
   m_ObjectHideFlags: 0
